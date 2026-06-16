@@ -17,8 +17,8 @@
     <main class="main-content">
         <div class="card">
             <h2>Novo Exercício</h2>
-            <form class="form-exercise" action="#" method="POST">
-                <label for="exercise-name" class="form-label"">Nome do Exercício:</label>
+            <form class="form-exercise" id="exercise-form"action="#" method="POST">
+                <label for="exercise-name" class="form-label">Nome do Exercício:</label>
                 <input type=" text" id="exercise-name" name="name" class="form-input" placeholder="Supino Reto">
                     <label for="muscle-group" class="form-label">Grupo Muscular:</label>
                     <select name="muscleGroup" id="muscle-group" class="form-input">
@@ -30,17 +30,12 @@
                         <option value="CORE">Abdomen</option>
                         <option value="LEGS">Pernas</option>
                     </select>
-                    <button type="submit" class="btn-submit">Enviar</button>
+                    <button type="submit" class="btn-submit" id="btn-submit">Enviar</button>
             </form>
         </div>
         <div class="card">
             <h2>Exercícios Cadastrados</h2>
-            <ul class="exercise-list" id="exercise-list">
-                <li class="exercise-item">
-                    <p>Supino Reto</p>
-                    <button type="button" class="btn-delete"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#EA3323"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg></button>
-                </li>
-            </ul>
+            <ul class="exercise-list" id="exercise-list"></ul>
         </div>
     </main>
     <script src="script.js"></script>
