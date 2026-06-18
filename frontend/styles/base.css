@@ -8,4 +8,9 @@
 body {
     background-color: #121214;
     color: #fff;
+    display: flex;
+    min-height: 100vh;
+    min-width: 100vw;
+    justify-content: center;
+    align-items: center;
 }

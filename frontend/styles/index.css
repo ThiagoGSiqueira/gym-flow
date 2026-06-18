@@ -1,0 +1,65 @@
+.main-content {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 20px;
+}
+
+.card {
+    background-color: #1a1a1e;
+    border-radius: 12px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px; 
+    min-height: auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.form-exercise {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 1.5rem;
+}
+
+.form-input {
+    border-radius: 6px;
+    border: 1px solid #333;
+    padding: 0.8rem;
+    font-size: 1rem;
+    background-color: #2a2a2e;
+    color: #fff;
+}
+
+.btn-submit {
+    margin-top: 1rem;
+    padding: 0.8rem;
+    background-color: #646cff;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-submit:hover {
+    background-color: #535bf2;
+}
+
+.exercise-list {
+    list-style: none;
+    margin-top: 1.5rem;
+}
+
+.exercise-item {
+    background-color: #2a2a2e;
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
