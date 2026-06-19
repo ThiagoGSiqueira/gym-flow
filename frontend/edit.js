@@ -11,9 +11,25 @@ async function loadExercise(id) {
 
     exerciseName.textContent = `${data.name}`;
     exerciseId.textContent = `Id: ${data.id}`;
-    exerciseMuscleGroup.textContent = `Grupo Muscular: ${data.muscleGroup}`;    
-
-    console.log(response.json());
+    exerciseMuscleGroup.textContent = `Grupo Muscular: ${data.muscleGroup}`;
 }
 
 loadExercise(id)
+
+const btnDelete = document.getElementById('btn-delete');
+
+btnDelete.addEventListener('click', () => {
+    deleteExercise(id);
+})
+
+async function deleteExercise(id) {
+    const response = await fetch(`http://localhost:8080/exercises/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+    )
+    window.location.href = "index.html";
+}
+

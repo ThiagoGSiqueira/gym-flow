@@ -45,6 +45,7 @@ exerciseForm.addEventListener('submit', async (e) => {
         body: JSON.stringify(exercise)
     });
     loadExercises();
+    exerciseForm.reset();
 })
 
 loadExercises();
