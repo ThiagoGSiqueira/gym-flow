@@ -11,5 +11,4 @@ public class GymFlowApiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(GymFlowApiApplication.class, args);
 	}
-
 }
