@@ -26,7 +26,7 @@ export async function createExercise(newExercise) {
 
         if (!response.ok) {
             throw new Error(`Erro ${response.status}: ${response.statusText}`)
-        }   
+        }
 
         return true;
     } catch (e) {
@@ -36,40 +36,82 @@ export async function createExercise(newExercise) {
 }
 
 export async function getExerciseById(id) {
-    const response = await fetch(`${BASE_URL}/${id}`)
-    return await response.json();
+    try {
+        const response = await fetch(`${BASE_URL}/${id}`)
+
+        if (!response.ok) {
+            throw new Error(`Erro ${response.status}: ${response.statusText}`)
+        }
+
+return await response.json();
+
+    } catch (e) {
+        console.error("Falha na requisição: ", e.message);
+        return false;
+    }
+
 }
 
 export async function deleteExercise(id) {
-    const response = await fetch(`${BASE_URL}/${id}`, {
-        method: 'DELETE'
-    })
-    return response.ok;
+    try {
+        const response = await fetch(`${BASE_URL}/${id}`, {
+            method: 'DELETE'
+        })
+        if (!response.ok) {
+            throw new Error(`Erro ${response.status}: ${response.statusText}`)
+        }
+        return true;
+    } catch (e) {
+        console.error("Falha na requisição: ", e.message);
+        return false;
+    }
+
 }
 
 export async function updateName(id, newName) {
-    const response = await fetch(`${BASE_URL}/${id}`, {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            name: newName
+    try {
+        const response = await fetch(`${BASE_URL}/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: newName
+            })
         })
-    })
-    return response.ok;
+
+        if (!response.ok) {
+            throw new Error(`Erro ${response.status}: ${response.statusText}`)
+        }
+
+        return true;
+    } catch (e) {
+        console.error("Falha na requisição: ", e.message);
+        return false;
+    }
+
 }
 
 export async function updateExercise(id, newExercise) {
-    const response = await fetch(`${BASE_URL}/${id}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            name: newExercise.name,
-            muscleGroup: newExercise.muscleGroup
+    try {
+        const response = await fetch(`${BASE_URL}/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: newExercise.name,
+                muscleGroup: newExercise.muscleGroup
+            })
         })
-    })
-    return response.ok;
+
+        if (!response.ok) {
+            throw new Error(`Erro ${response.status}: ${response.statusText}`)
+        }
+
+        return true;
+    } catch (e) {
+        console.error("Falha na requisição: ", e.message);
+        return false;
+    }
 }

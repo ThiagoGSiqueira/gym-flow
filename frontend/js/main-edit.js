@@ -18,13 +18,25 @@ const ui = {
 async function loadExercise() {
     const exercise = await getExerciseById(ui.id);
 
+    if (!exercise) {
+        alert("Não foi possível carregar o exercício atual.")
+        window.location.href="index.html"
+    }
+
     ui.exerciseName.textContent = `${exercise.name}`;
     ui.exerciseId.textContent = `Id: ${exercise.id}`;
     ui.exerciseMuscleGroup.textContent = `Grupo Muscular: ${exercise.muscleGroup}`;
 }
 
-ui.btnDelete.addEventListener('click', async () => {
-    await deleteExercise(ui.id)
+ui.btnDelete.addEventListener('click', async (e) => {
+
+    const response = await deleteExercise(ui.id)
+
+    if (!response) {
+        alert('Não foi possível deletar, tente novamente.')
+        return;
+    }
+
     window.location.href = "index.html";
 })
 
@@ -38,17 +50,32 @@ ui.btnCloseModal.addEventListener('click', () => {
 
 ui.btnSaveUpdate.addEventListener('click', async (e) => {
 
+    let response = null;
+
     const newExercise = {
         name: ui.newExerciseName.value,
         muscleGroup: ui.newMuscleGroup.value
     }
 
+    if (!newExercise.name) {
+        alert('Nome não pode estar vazio');
+        return
+    } else if (newExercise.name.length > 30) {
+        alert('Nome deve ter menos do que 30 caracteres');
+        return
+    }
+
     if (!newExercise.muscleGroup) {
-        await updateName(ui.id, ui.newExerciseName.value);
+        response = await updateName(ui.id, ui.newExerciseName.value);
     }
     else {
-        await updateExercise(ui.id, newExercise);
+        response = await updateExercise(ui.id, newExercise);
     }
+
+    if(!response) {
+        alert("Não foi possível alterar o exercício, tente novamente.")
+    }
+
     refreshUI();
 })
 

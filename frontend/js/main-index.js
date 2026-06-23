@@ -52,7 +52,8 @@ ui.exerciseForm.addEventListener('submit', async (e) => {
         if (await createExercise(newExercise)) {
             loadExercises();
             ui.exerciseForm.reset();
-        }
+            return;
+        } 
         alert("Não foi possível criar o exercício, tente novamente.");
     }
 })
