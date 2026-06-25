@@ -2,16 +2,18 @@ package com.personal.gym_flow_api.service;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.personal.gym_flow_api.entity.Exercise;
 import com.personal.gym_flow_api.entity.MuscleGroup;
+import com.personal.gym_flow_api.exceptions.ExerciseNotFound;
 import com.personal.gym_flow_api.repository.ExerciseRepository;
 
 import lombok.RequiredArgsConstructor;
-@RequiredArgsConstructor
 
+@RequiredArgsConstructor
 
 @Service
 public class ExerciseService {
@@ -27,11 +29,11 @@ public class ExerciseService {
         return exerciseRepository.findAll();
 
     }
+
     @Transactional(readOnly = true)
     public Exercise findById(Long id) {
         return exerciseRepository.findById(id).orElseThrow(
-            () -> new RuntimeException()
-        );
+                () -> new ExerciseNotFound("Exercício de ID: " + id + " não encontrado!", HttpStatus.NOT_FOUND));
     }
 
     @Transactional

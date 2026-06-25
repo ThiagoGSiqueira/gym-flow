@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.personal.gym_flow_api.ExerciseMapper;
@@ -23,6 +22,7 @@ import com.personal.gym_flow_api.web.dto.ExerciseResponseDTO;
 import com.personal.gym_flow_api.web.dto.ExerciseUpdateNameDTO;
 import com.personal.gym_flow_api.web.dto.UpdateExerciseDTO;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 
@@ -34,7 +34,7 @@ public class ExerciseController {
     private final ExerciseMapper exerciseMapper;
 
     @PostMapping
-    public ResponseEntity<ExerciseResponseDTO> createExercise(@RequestBody ExerciseRequestDTO exerciseDTO){
+    public ResponseEntity<ExerciseResponseDTO> createExercise(@Valid @RequestBody ExerciseRequestDTO exerciseDTO){
         Exercise exercise = exerciseMapper.toEntity(exerciseDTO);
         Exercise response = exerciseService.create(exercise);
         ExerciseResponseDTO responseDTO = exerciseMapper.toDto(response);
