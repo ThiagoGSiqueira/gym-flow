@@ -27,7 +27,6 @@ public class ExerciseService {
     @Transactional(readOnly = true)
     public List<Exercise> findAll() {
         return exerciseRepository.findAll();
-
     }
 
     @Transactional(readOnly = true)
