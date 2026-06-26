@@ -52,6 +52,9 @@ public class ExerciseService {
 
     @Transactional
     public void deleteExercise(Long id) {
+        if (!exerciseRepository.existsById(id)) {
+                throw new ExerciseNotFound("Exercício de ID: " + id + " não encontrado!", HttpStatus.NOT_FOUND);
+        }
         exerciseRepository.deleteById(id);
     }
 }
