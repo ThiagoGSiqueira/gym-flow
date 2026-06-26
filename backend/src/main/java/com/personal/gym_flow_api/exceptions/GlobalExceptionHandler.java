@@ -9,13 +9,15 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.personal.gym_flow_api.web.dto.ErrorResponseDTO;
 
+import tools.jackson.databind.exc.UnrecognizedPropertyException;
+
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(BaseException.class)
     public ResponseEntity<ErrorResponseDTO> handleBaseException(BaseException ex) {
 
-        ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO(ex.getMessage(), ex.getStatus());
+        ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO(ex.getMessage(), ex.getStatus().value());
 
         return ResponseEntity.status(ex.getStatus()).body(errorResponseDTO);
     }
@@ -24,8 +26,24 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponseDTO> handleMethodArgumentNotValid(MethodArgumentNotValidException ex) {
         String message = ex.getBindingResult().getAllErrors().get(0).getDefaultMessage();
 
-        ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO(message, HttpStatus.BAD_REQUEST);
+        ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO(message, HttpStatus.BAD_REQUEST.value());
 
         return ResponseEntity.badRequest().body(errorResponseDTO);
     }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<ErrorResponseDTO> handleHttpMessageNotReadableException(HttpMessageNotReadableException ex) {
+
+        if (ex.getCause() instanceof UnrecognizedPropertyException cause) {
+            ErrorResponseDTO error = new ErrorResponseDTO(
+                    "Campo extra não permitido: " + cause.getPropertyName(),
+                    HttpStatus.BAD_REQUEST.value());
+            return ResponseEntity.badRequest().body(error);
+        }
+
+        ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO("Formato do JSON inválido",
+                HttpStatus.BAD_REQUEST.value());
+        return ResponseEntity.badRequest().body(errorResponseDTO);
+    }
+
 }

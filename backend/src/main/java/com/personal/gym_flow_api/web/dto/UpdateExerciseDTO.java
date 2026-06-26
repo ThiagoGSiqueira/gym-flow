@@ -2,6 +2,15 @@ package com.personal.gym_flow_api.web.dto;
 
 import com.personal.gym_flow_api.entity.MuscleGroup;
 
-public record UpdateExerciseDTO (String name, MuscleGroup muscleGroup) {
-    
-}
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
+public record UpdateExerciseDTO (
+    @NotBlank(message = "O nome não pode estar vázio.")
+    @Size(max = 30, message = "O nome pode ter no máximo 30 caracteres.")
+    String name, 
+    @NotNull(message = "O gupo muscular não pode ser nulo.")
+    MuscleGroup muscleGroup){
+        
+    }

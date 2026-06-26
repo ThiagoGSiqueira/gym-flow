@@ -58,15 +58,15 @@ public class ExerciseController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<ExerciseResponseDTO> updateName(@PathVariable Long id, @RequestBody ExerciseUpdateNameDTO ex) {
+    public ResponseEntity<ExerciseResponseDTO> updateName(@PathVariable Long id, @Valid @RequestBody ExerciseUpdateNameDTO ex) {
         Exercise response = exerciseService.updateName(id, ex.name());
         ExerciseResponseDTO responseDTO = exerciseMapper.toDto(response);
         return ResponseEntity.ok(responseDTO);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ExerciseResponseDTO> updateExercise(@PathVariable Long id, @RequestBody UpdateExerciseDTO ex) {
-        Exercise response = exerciseService.updateExercise(id, ex.name(), ex.muscleGroup());
+    public ResponseEntity<ExerciseResponseDTO> updateExercise(@PathVariable Long id, @Valid @RequestBody UpdateExerciseDTO ex) {
+            Exercise response = exerciseService.updateExercise(id, ex.name(), ex.muscleGroup());
         ExerciseResponseDTO responseDTO = exerciseMapper.toDto(response);
         return ResponseEntity.ok(responseDTO);
     }
