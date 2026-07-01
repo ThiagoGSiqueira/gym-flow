@@ -3,8 +3,8 @@ package com.personal.gym_flow_api;
 import org.springframework.stereotype.Component;
 
 import com.personal.gym_flow_api.entity.Exercise;
-import com.personal.gym_flow_api.web.dto.ExerciseRequestDTO;
-import com.personal.gym_flow_api.web.dto.ExerciseResponseDTO;
+import com.personal.gym_flow_api.web.dto.exercise.ExerciseRequestDTO;
+import com.personal.gym_flow_api.web.dto.exercise.ExerciseResponseDTO;
 
 @Component
 public class ExerciseMapper {

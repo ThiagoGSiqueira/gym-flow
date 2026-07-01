@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.personal.gym_flow_api.ExerciseMapper;
 import com.personal.gym_flow_api.entity.Exercise;
 import com.personal.gym_flow_api.service.ExerciseService;
-import com.personal.gym_flow_api.web.dto.ExerciseRequestDTO;
-import com.personal.gym_flow_api.web.dto.ExerciseResponseDTO;
-import com.personal.gym_flow_api.web.dto.ExerciseUpdateNameDTO;
-import com.personal.gym_flow_api.web.dto.UpdateExerciseDTO;
+import com.personal.gym_flow_api.web.dto.exercise.ExerciseRequestDTO;
+import com.personal.gym_flow_api.web.dto.exercise.ExerciseResponseDTO;
+import com.personal.gym_flow_api.web.dto.exercise.ExerciseUpdateNameDTO;
+import com.personal.gym_flow_api.web.dto.exercise.UpdateExerciseDTO;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
