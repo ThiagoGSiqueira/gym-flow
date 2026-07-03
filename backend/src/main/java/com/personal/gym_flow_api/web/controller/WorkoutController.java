@@ -11,9 +11,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.personal.gym_flow_api.ExerciseMapper;
 import com.personal.gym_flow_api.WorkoutMapper;
+import com.personal.gym_flow_api.entity.Exercise;
 import com.personal.gym_flow_api.entity.Workout;
 import com.personal.gym_flow_api.service.WorkoutService;
+import com.personal.gym_flow_api.web.dto.exercise.ExerciseResponseDTO;
 import com.personal.gym_flow_api.web.dto.workout.WorkoutRequestDTO;
 import com.personal.gym_flow_api.web.dto.workout.WorkoutResponseDTO;
 
@@ -27,6 +30,7 @@ public class WorkoutController {
     
     private final WorkoutService workoutService;
     private final WorkoutMapper workoutMapper;
+    private final ExerciseMapper exerciseMapper;
 
     @PostMapping
     public ResponseEntity<WorkoutResponseDTO> createWorkout(@Valid @RequestBody WorkoutRequestDTO workout) {
@@ -52,5 +56,11 @@ public class WorkoutController {
         Workout wo = workoutService.getById(id);
 
         return ResponseEntity.ok().body(workoutMapper.toDto(wo));
+    }
+
+    @PostMapping("/{workoutId}/exercises/{exerciseId}")
+    public ResponseEntity<ExerciseResponseDTO> addExercise(@PathVariable Long workoutId, @PathVariable Long exerciseId) {
+        ExerciseResponseDTO exDTO = exerciseMapper.toDto(workoutService.addExercise(workoutId, exerciseId));
+        return ResponseEntity.status(201).body(exDTO);
     }
 }
