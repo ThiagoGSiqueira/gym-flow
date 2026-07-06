@@ -4,6 +4,6 @@ import java.util.List;
 
 import com.personal.gym_flow_api.web.dto.exercise.ExerciseResponseDTO;
 
-public record WorkoutResponseDTO (String name, List<ExerciseResponseDTO> exercises) {
+public record WorkoutResponseDTO (Long id, String name, List<ExerciseResponseDTO> exercises) {
     
 }

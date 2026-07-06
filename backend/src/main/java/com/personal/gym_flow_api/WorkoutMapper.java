@@ -35,7 +35,7 @@ public class WorkoutMapper {
             exDTO.add(exerciseMapper.toDto(e));
         }
 
-        WorkoutResponseDTO woDTO = new WorkoutResponseDTO(workout.getName(), exDTO);
+        WorkoutResponseDTO woDTO = new WorkoutResponseDTO(workout.getId(), workout.getName(), exDTO);
         
         return woDTO;
     }

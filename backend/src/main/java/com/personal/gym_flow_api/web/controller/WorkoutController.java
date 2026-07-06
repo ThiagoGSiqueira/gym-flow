@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.personal.gym_flow_api.ExerciseMapper;
 import com.personal.gym_flow_api.WorkoutMapper;
-import com.personal.gym_flow_api.entity.Exercise;
 import com.personal.gym_flow_api.entity.Workout;
 import com.personal.gym_flow_api.service.WorkoutService;
 import com.personal.gym_flow_api.web.dto.exercise.ExerciseResponseDTO;

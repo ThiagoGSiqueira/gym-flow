@@ -10,6 +10,6 @@ public record ExerciseRequestDTO (
     @NotBlank(message = "O nome não pode estar vázio.")
     @Size(max = 30, message = "O nome pode ter no máximo 30 caracteres.")
     String name, 
-    @NotNull(message = "O gupo muscular não pode ser nulo.")
+    @NotNull(message = "O grupo muscular não pode ser nulo.")
     MuscleGroup muscleGroup) { 
 }
