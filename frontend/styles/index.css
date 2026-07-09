@@ -4,7 +4,8 @@
     --bg-card: #1e1e1e;
     --accent: #ff4800;
     --text: #e3e3e3;
-    --item-bg: rgba(255, 255, 255, 0.05);
+    --item-bg: #ffffff0d;
+    --item-bg-hover: #ffffff1a;
 }
 
 body {
@@ -76,9 +77,8 @@ main {
     padding: 0.5rem;
 }
 
-/* Personalização da barra de rolagem */
 .list-container::-webkit-scrollbar {
-    width: 8px; /* Largura da barra */
+    width: 8px; 
 }
 
 .list-container::-webkit-scrollbar-track {
@@ -92,7 +92,12 @@ main {
 }
 
 .list-container::-webkit-scrollbar-thumb:hover {
-    background: #FF4800; 
+    background: var(--accent); 
+}
+
+.list-link {
+    text-decoration: none;
+    color: var(--text);
 }
 
 .list-item {
@@ -105,16 +110,14 @@ main {
     margin-bottom: 0.8rem;
 }
 
+.list-item:hover {
+    background-color: var(--item-bg-hover);
+    color: var(--accent);
+}
+
 .list-item p {
     font-size: 1.1rem;
     margin: 0;
-}
-
-.list-item button {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.2s;
 }
 
 .list-item button:hover {
