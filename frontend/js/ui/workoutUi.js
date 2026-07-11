@@ -1,6 +1,12 @@
 const listContainer = document.getElementById("list-container")
+const workoutModal = document.getElementById('workout-modal')
+const btnWorkoutOpenModal = document.getElementById("btn-open-modal")
+const btnWorkoutCloseModal = document.getElementById("btn-close-modal")
 
 export async function renderWorkouts(data) {
+
+    listContainer.innerHTML = "";
+
     data.forEach(workout => {
         listContainer.innerHTML += `
                 <a href="workout.html" class="list-link">
@@ -15,4 +21,23 @@ export async function renderWorkouts(data) {
                 </a>
     `
     });
+}   
+
+btnWorkoutOpenModal.addEventListener('click', () => {
+    workoutModal.showModal()
+})
+
+btnWorkoutCloseModal.addEventListener('click', () => {
+    workoutModal.close()
+})
+
+export function setupModal(callback) {
+    const btnCreateWorkout = document.getElementById('btn-create-workout')
+    const modalInput = document.getElementById('modal-input')
+
+    btnCreateWorkout.addEventListener('click', () => {
+        const workoutName = modalInput.value;
+        workoutModal.close()
+        callback(workoutName)
+    })
 }

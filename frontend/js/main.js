@@ -1,9 +1,16 @@
-import { fetchAllWorkouts } from "./api/workoutApi.js";
-import { renderWorkouts } from "./ui/workoutUi.js";
+import { createWorkout, getAllWorkouts } from "./api/workoutApi.js";
+import { renderWorkouts, setupModal } from "./ui/workoutUi.js";
 
-async function getAllWorkouts() { 
-    const data =  await fetchAllWorkouts()
-    renderWorkouts(data)
+async function handleGetAllWorkouts() { 
+    const data =  await getAllWorkouts()
+    await renderWorkouts(data)
 }
 
-getAllWorkouts()
+async function handleCreateWorkout(name) {
+    const newWorkout = await createWorkout(name)
+    await handleGetAllWorkouts()
+}
+
+
+handleGetAllWorkouts()
+setupModal(handleCreateWorkout)

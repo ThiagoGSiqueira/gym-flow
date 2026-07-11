@@ -142,3 +142,65 @@ main {
 .btn-primary:hover {
     background-color: var(--accent);
 }
+
+
+/* --- Estilo do Modal --- */
+.modal {
+    background-color: var(--bg-card);
+    border: none;
+    border-radius: 1rem;
+    padding: 2rem;
+    color: var(--text);
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+.modal::backdrop {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.btn-close {
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    transition: 0.3s;
+}
+
+.btn-close:hover {
+    color: var(--accent);
+}
+
+.modal-input {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid #414141;
+    background: var(--bg-body);
+    color: var(--text);
+    box-sizing: border-box; 
+    font-family: inherit;
+}
+
+.modal-input:focus {
+    outline: 2px solid var(--accent);
+    border-color: transparent;
+}
