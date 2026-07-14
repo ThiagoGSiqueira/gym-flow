@@ -1,8 +1,14 @@
 const BASE_URL = "http://localhost:8080/workout"
 
 export async function getAllWorkouts() {
-    const data = await fetch(BASE_URL);
-    return await data.json();
+    try {
+        const response = await fetch(BASE_URL);
+        const json = await response.json()
+        return { success: true, data: json };
+    } catch (e) {
+        console.error(`Log técnico: ${e.message}`)
+        return { message: "Não foi possível conectar ao servidor. Tente novamente mais tarde.", success: false };
+    }
 }
 
 export async function createWorkout(name) {
