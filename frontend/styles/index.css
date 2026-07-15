@@ -1,148 +1,9 @@
-/* --- Variaveis de design --- */
-:root {
-    --bg-body: #121212;
-    --bg-card: #1e1e1e;
-    --accent: #ff4800;
-    --text: #e3e3e3;
-    --item-bg: #ffffff0d;
-    --item-bg-hover: #ffffff1a;
-}
-
 body {
     background: linear-gradient(135deg, var(--bg-body) 0%, #1a1a1a 100%);
     color: var(--text);
     font-family: 'Inter', sans-serif;
     margin: 0;
 }
-
-/* --- Estilo da barra de navegacao --- */
-.navigation-bar {
-    background-color: var(--bg-card);
-    height: 6.25rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 3rem;
-}
-
-.container-nav-title {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.nav-title {
-    font-size: 1.25rem;
-    font-weight: 700;
-}
-
-.nav-link:hover {
-    color: var(--accent);
-}
-
-/* --- Estilo dos cards --- */
-main {
-    display: flex;
-    align-items: start;
-    justify-content: center;
-    height: calc(56vh - 6.25rem);
-    padding: 10rem;
-    gap: 50px;
-}
-
-.card {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    background-color: var(--bg-card);
-    width: 90%;
-    max-width: 25rem;
-    max-height: 20rem;
-    padding: 2rem;
-    border-radius: 1rem;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-}
-
-.card h2 {
-    font-weight: bold;
-    font-size: 20px;
-}
-
-.list-container {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    overflow-y: auto;
-    flex-grow: 1;
-    padding: 0.5rem;
-}
-
-.list-container::-webkit-scrollbar {
-    width: 8px; 
-}
-
-.list-container::-webkit-scrollbar-track {
-    background: #121212;
-    border-radius: 4px;
-}
-
-.list-container::-webkit-scrollbar-thumb {
-    background: #414141; 
-    border-radius: 4px;
-}
-
-.list-container::-webkit-scrollbar-thumb:hover {
-    background: var(--accent); 
-}
-
-.list-link {
-    text-decoration: none;
-    color: var(--text);
-}
-
-.list-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: var(--item-bg);
-    padding: 1rem;
-    border-radius: 0.5rem;
-    margin-bottom: 0.8rem;
-}
-
-.list-item:hover {
-    background-color: var(--item-bg-hover);
-    color: var(--accent);
-}
-
-.list-item p {
-    font-size: 1.1rem;
-    margin: 0;
-}
-
-.list-item button:hover {
-    transform: scale(1.2);
-}
-
-/* --- Estilo dos botoes --- */
-.btn-primary {
-    width: 100%;
-    height: 3rem;
-    border-radius: 0.5rem;
-    border: none;
-    background-color: #414141;
-    color: var(--text);
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s;
-    flex-shrink: 0;
-}
-
-.btn-primary:hover {
-    background-color: var(--accent);
-}
-
 
 /* --- Estilo do Modal --- */
 .modal {
@@ -203,4 +64,11 @@ main {
 .modal-input:focus {
     outline: 2px solid var(--accent);
     border-color: transparent;
+}
+
+/* --- Estilo específico da lista --- */
+
+.list-item:hover {
+    background-color: var(--item-bg-hover);
+    color: var(--accent);
 }

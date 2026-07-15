@@ -18,6 +18,9 @@ async function handleCreateWorkout(name) {
         if (data.code === 409) {
             alert(`A ficha de nome "${name}" já existe.`)
             return
+        } else if (data.code === 400) {
+            alert("Erro no envio. Por favor, verifique os campos.")
+            return
         }
         alert(`Erro: ${data.code}. Não foi possível conectar-se ao servidor. Por favor, tente novamente mais tarde.`)
         return

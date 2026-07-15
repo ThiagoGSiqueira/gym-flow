@@ -8,8 +8,9 @@ export async function renderWorkouts(data) {
     listContainer.innerHTML = "";
 
     data.forEach(workout => {
+
         listContainer.innerHTML += `
-                <a href="workout.html" class="list-link">
+                <a href="workout-details.html?${workout.id}" class="list-link">
                     <li class="list-item">
                         <p>${workout.name}</p>
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"

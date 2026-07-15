@@ -1,6 +1,15 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
+/* --- Variaveis de design --- */
+:root {
+    --bg-body: #121212;
+    --bg-card: #1e1e1e;
+    --accent: #ff4800;
+    --text: #e3e3e3;
+    --item-bg: #ffffff0d;
+    --item-bg-hover: #ffffff1a;
+}
 
 body {
     background-color: #121212;
