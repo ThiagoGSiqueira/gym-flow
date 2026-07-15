@@ -1,5 +1,6 @@
 package com.personal.gym_flow_api.exceptions;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -48,10 +49,23 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
-    public ResponseEntity<ErrorResponseDTO> handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException ex) {
-        ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO("Parâmetro da URL inválido.", HttpStatus.BAD_REQUEST.value());
+    public ResponseEntity<ErrorResponseDTO> handleMethodArgumentTypeMismatchException(
+            MethodArgumentTypeMismatchException ex) {
+        ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO("Parâmetro da URL inválido.",
+                HttpStatus.BAD_REQUEST.value());
 
         return ResponseEntity.badRequest().body(errorResponseDTO);
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<ErrorResponseDTO> handleDataIntegrityViolationException(DataIntegrityViolationException ex) {
+
+        if (ex.getRootCause() != null && ex.getRootCause().getMessage().contains("Duplicate entry")) {
+            return ResponseEntity.status(409).body(new ErrorResponseDTO("O conteúdo já existe", 409));
+        }
+
+        return ResponseEntity.status(500).body(new ErrorResponseDTO("Problema de integridade no banco.", 500));
+
     }
 
 }

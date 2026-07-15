@@ -5,14 +5,24 @@ async function handleGetAllWorkouts() {
     const data = await getAllWorkouts()
 
     if (data.success === false) {
-        alert(data.message)
+        alert("Não foi possível conectar-se ao servidor. Por favor, tente novamente mais tarde.")
         return
     }
     await renderWorkouts(data.data)
 }
 
 async function handleCreateWorkout(name) {
-    const newWorkout = await createWorkout(name)
+    const data = await createWorkout(name)
+
+    if (data.success === false) {
+        if (data.code === 409) {
+            alert(`A ficha de nome "${name}" já existe.`)
+            return
+        }
+        alert(`Erro: ${data.code}. Não foi possível conectar-se ao servidor. Por favor, tente novamente mais tarde.`)
+        return
+    }
+
     await handleGetAllWorkouts()
 }
 
