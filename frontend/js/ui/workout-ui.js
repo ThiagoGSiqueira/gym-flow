@@ -10,7 +10,7 @@ export async function renderWorkouts(data) {
     data.forEach(workout => {
 
         listContainer.innerHTML += `
-                <a href="workout-details.html?${workout.id}" class="list-link">
+                <a href="workout-details.html?id=${workout.id}" class="list-link">
                     <li class="list-item">
                         <p>${workout.name}</p>
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
@@ -33,6 +33,7 @@ btnWorkoutCloseModal.addEventListener('click', () => {
 })
 
 export function setupModal(callback) {
+    
     const btnCreateWorkout = document.getElementById('btn-create-workout')
     const modalInput = document.getElementById('modal-input')
 
@@ -40,5 +41,6 @@ export function setupModal(callback) {
         const workoutName = modalInput.value;
         workoutModal.close()
         callback(workoutName)
+        modalInput.value = "";
     })
 }

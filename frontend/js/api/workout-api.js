@@ -40,3 +40,15 @@ export async function createWorkout(name) {
         return { success: false, code: STATUS_CODE.NETWORK_ERROR, data: null }
     }
 }
+
+export async function getWorkoutById(id) {
+    try {
+        const response = await fetch(`${BASE_URL}/${id}`)
+        const json = await response.json()
+
+        return { success: true, code: STATUS_CODE.SUCCESS, data: json}
+    } 
+    catch (e) {
+        return { success: false, code: STATUS_CODE.NETWORK_ERROR, data: null}
+    }
+}
