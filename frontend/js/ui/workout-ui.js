@@ -1,14 +1,11 @@
 const listContainer = document.getElementById("list-container")
-const workoutModal = document.getElementById('workout-modal')
-const btnWorkoutOpenModal = document.getElementById("btn-open-modal")
-const btnWorkoutCloseModal = document.getElementById("btn-close-modal")
+const workoutTitle = document.getElementById('workout-title')
 
-export async function renderWorkouts(data) {
+export function renderWorkouts(data) {
 
     listContainer.innerHTML = "";
 
     data.forEach(workout => {
-
         listContainer.innerHTML += `
                 <a href="workout-details.html?id=${workout.id}" class="list-link">
                     <li class="list-item">
@@ -22,18 +19,32 @@ export async function renderWorkouts(data) {
                 </a>
     `
     });
-}   
+}
 
-btnWorkoutOpenModal.addEventListener('click', () => {
-    workoutModal.showModal()
-})
+export function renderWorkoutDetails(workout) {
+    workoutTitle.innerHTML = `ID: ${workout.id} | ${workout.name}`
+    let count = 0;
 
-btnWorkoutCloseModal.addEventListener('click', () => {
-    workoutModal.close()
-})
-
+    workout.exercises.forEach((exercise) => {
+        listContainer.innerHTML += `
+        <li class="list-item">
+                    <p>${exercise.name}</p>
+                    <button>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                            fill="red">
+                            <path
+                                d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" />
+                        </svg>
+                    </button>
+                </li>`
+    })
+}
+   
 export function setupModal(callback) {
-    
+
+    const workoutModal = document.getElementById('workout-modal')
+    const btnWorkoutOpenModal = document.getElementById("btn-open-modal")
+    const btnWorkoutCloseModal = document.getElementById("btn-close-modal")
     const btnCreateWorkout = document.getElementById('btn-create-workout')
     const modalInput = document.getElementById('modal-input')
 
@@ -42,5 +53,14 @@ export function setupModal(callback) {
         workoutModal.close()
         callback(workoutName)
         modalInput.value = "";
+    })
+
+     btnWorkoutOpenModal.addEventListener('click', () => {
+        workoutModal.showModal()
+    })
+
+
+    btnWorkoutCloseModal.addEventListener('click', () => {
+        workoutModal.close()
     })
 }
