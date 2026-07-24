@@ -4,6 +4,7 @@ const STATUS_CODE = {
     NETWORK_ERROR: 0,
     NOT_FOUND: 404,
     SUCCESS: 200,
+    NO_CONTENT: 204,
     CREATED: 201
 }
 
@@ -14,6 +15,18 @@ export async function getAllWorkouts() {
         return { success: true, code: STATUS_CODE.SUCCESS, data: json };
     } catch (e) {
         return { success: false, code: STATUS_CODE.NETWORK_ERROR, data: null };
+    }
+}
+
+export async function getWorkoutById(id) {
+    try {
+        const response = await fetch(`${BASE_URL}/${id}`)
+        const json = await response.json()
+
+        return { success: true, code: STATUS_CODE.SUCCESS, data: json }
+    }
+    catch (e) {
+        return { success: false, code: STATUS_CODE.NETWORK_ERROR, data: null }
     }
 }
 
@@ -41,14 +54,14 @@ export async function createWorkout(name) {
     }
 }
 
-export async function getWorkoutById(id) {
+export async function deleteWorkout(id) {
     try {
-        const response = await fetch(`${BASE_URL}/${id}`)
-        const json = await response.json()
-
-        return { success: true, code: STATUS_CODE.SUCCESS, data: json}
-    } 
-    catch (e) {
-        return { success: false, code: STATUS_CODE.NETWORK_ERROR, data: null}
+        await fetch(`${BASE_URL}/${id}`, {
+            method: 'DELETE'
+        })
+        return await{ success: true, code: STATUS_CODE.NO_CONTENT, data: null }
+    } catch (e) {
+        return { success: false, code: STATUS_CODE.NETWORK_ERROR, data: null }
     }
 }
+
