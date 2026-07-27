@@ -59,9 +59,25 @@ export async function deleteWorkout(id) {
         await fetch(`${BASE_URL}/${id}`, {
             method: 'DELETE'
         })
-        return await{ success: true, code: STATUS_CODE.NO_CONTENT, data: null }
+        return { success: true, code: STATUS_CODE.NO_CONTENT, data: null }
     } catch (e) {
         return { success: false, code: STATUS_CODE.NETWORK_ERROR, data: null }
     }
 }
 
+export async function updateWorkoutName(id, name) {
+    console.log(id)
+    console.log(name)
+    console.log(`${BASE_URL}/${id}`)
+    try {
+        await fetch (`${BASE_URL}/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({name})
+        })
+    } catch (e) {
+        return { success: false, code: STATUS_CODE.NETWORK_ERROR, data: null }
+    }
+}

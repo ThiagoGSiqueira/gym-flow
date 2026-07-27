@@ -1,5 +1,5 @@
-import { deleteWorkout, getWorkoutById } from "../api/workout-api.js";
-import { renderWorkoutDetails } from "../ui/workout-ui.js";
+import { deleteWorkout, getWorkoutById, updateWorkoutName } from "../api/workout-api.js";
+import { renderWorkoutDetails, setupModal } from "../ui/workout-ui.js";
 
 
 const queryString = window.location.search;
