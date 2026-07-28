@@ -1,17 +1,18 @@
-import { deleteWorkout, getWorkoutById, updateWorkoutName } from "../api/workout-api.js";
-import { renderWorkoutDetails, setupModal } from "../ui/workout-ui.js";
+import { requestDeleteWorkout, requestGetWorkoutById, requestUpdateWorkoutName } from "../api/workout-api.js";
+import { setupDeleteButton, renderWorkoutDetails, setupModal } from "../ui/workout-ui.js";
 
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const id = urlParams.get('id');
-const response = await getWorkoutById(id);
+const response = await requestGetWorkoutById(id);
 const btnDeleteWorkout = document.getElementById('btn-delete-workout')
 
 renderWorkoutDetails(response.data)
 
-btnDeleteWorkout.addEventListener('click', async () => {
-    const response = await deleteWorkout(id);
+async function handleDelete() {
+    alert('entrou aq ')
+    const response = await requestDeleteWorkout(id);
 
     console.log(response.success)
 
@@ -19,7 +20,9 @@ btnDeleteWorkout.addEventListener('click', async () => {
         window.location.href = "index.html"
     }
     else {
-        //Trocar para mensagem vinda da UI.
+        //Trocar para dmensagem vinda da UI.
         alert("Erro de rede.")
     }
-})
+}
+
+setupDeleteButton(handleDelete);

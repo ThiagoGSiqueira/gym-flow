@@ -1,8 +1,8 @@
-import { createWorkout, getAllWorkouts } from "../api/workout-api.js";
+import { requestCreateWorkout, requestGetAllWorkouts } from "../api/workout-api.js";
 import { renderWorkouts, setupModal } from "../ui/workout-ui.js";
 
 async function handleGetAllWorkouts() {
-    const data = await getAllWorkouts()
+    const data = await requestGetAllWorkouts()
 
     if (data.success === false) {
         alert("Não foi possível conectar-se ao servidor. Por favor, tente novamente mais tarde.")
@@ -12,7 +12,7 @@ async function handleGetAllWorkouts() {
 }
 
 async function handleCreateWorkout(name) {
-    const data = await createWorkout(name)
+    const data = await requestCreateWorkout(name)
 
     if (data.success === false) {
         if (data.code === 409) {

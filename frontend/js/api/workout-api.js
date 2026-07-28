@@ -8,7 +8,7 @@ const STATUS_CODE = {
     CREATED: 201
 }
 
-export async function getAllWorkouts() {
+export async function requestGetAllWorkouts() {
     try {
         const response = await fetch(BASE_URL);
         const json = await response.json()
@@ -18,7 +18,7 @@ export async function getAllWorkouts() {
     }
 }
 
-export async function getWorkoutById(id) {
+export async function requestGetWorkoutById(id) {
     try {
         const response = await fetch(`${BASE_URL}/${id}`)
         const json = await response.json()
@@ -30,7 +30,7 @@ export async function getWorkoutById(id) {
     }
 }
 
-export async function createWorkout(name) {
+export async function requestCreateWorkout(name) {
     try {
         const workout = {
             name: name
@@ -53,8 +53,8 @@ export async function createWorkout(name) {
         return { success: false, code: STATUS_CODE.NETWORK_ERROR, data: null }
     }
 }
-
-export async function deleteWorkout(id) {
+ 
+export async function requestDeleteWorkout(id) {
     try {
         await fetch(`${BASE_URL}/${id}`, {
             method: 'DELETE'
@@ -65,7 +65,7 @@ export async function deleteWorkout(id) {
     }
 }
 
-export async function updateWorkoutName(id, name) {
+export async function requestUpdateWorkoutName(id, name) {
     console.log(id)
     console.log(name)
     console.log(`${BASE_URL}/${id}`)
@@ -77,6 +77,7 @@ export async function updateWorkoutName(id, name) {
             },
             body: JSON.stringify({name})
         })
+        return { success: true, code: STATUS_CODE.SUCCESS, data: null}
     } catch (e) {
         return { success: false, code: STATUS_CODE.NETWORK_ERROR, data: null }
     }

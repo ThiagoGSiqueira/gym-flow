@@ -22,7 +22,7 @@ export function renderWorkouts(data) {
 }
 
 export function renderWorkoutDetails(workout) {
-    workoutTitle.innerHTML = `ID: ${workout.id} | ${workout.name}`
+    workoutTitle.innerHTML = `${workout.name}`
     let count = 0;
 
     workout.exercises.forEach((exercise) => {
@@ -39,9 +39,8 @@ export function renderWorkoutDetails(workout) {
                 </li>`
     })
 }
-   
-export function setupModal(callback) {
 
+export function setupModal(callback) {
     const workoutModal = document.getElementById('workout-modal')
     const btnWorkoutOpenModal = document.getElementById("btn-open-modal")
     const btnWorkoutCloseModal = document.getElementById("btn-close-modal")
@@ -55,12 +54,19 @@ export function setupModal(callback) {
         modalInput.value = "";
     })
 
-     btnWorkoutOpenModal.addEventListener('click', () => {
+    btnWorkoutOpenModal.addEventListener('click', () => {
         workoutModal.showModal()
     })
 
-
     btnWorkoutCloseModal.addEventListener('click', () => {
         workoutModal.close()
+    })
+}
+
+export function setupDeleteButton(deleteFunction) {
+    const btnDeleteWorkout = document.getElementById('btn-delete-workout')
+
+    btnDeleteWorkout.addEventListener('click', () =>{
+        deleteFunction()
     })
 }
