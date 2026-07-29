@@ -22,7 +22,6 @@ export function renderWorkouts(data) {
 }
 
 export function renderWorkoutDetails(workout) {
-    console.log(workout.name)
     workoutTitle.innerHTML = `${workout.name}`
 
     workout.exercises.forEach((exercise) => {
@@ -40,27 +39,35 @@ export function renderWorkoutDetails(workout) {
     })
 }
 
-export function setupSaveWorkout(callback) {
-    const workoutModal = document.getElementById('workout-modal')
-    const btnWorkoutOpenModal = document.getElementById("btn-open-modal")
-    const btnWorkoutCloseModal = document.getElementById("btn-close-modal")
-    const btnSaveWorkout = document.getElementById('btn-save-workout')
+export async function saveWorkout(modalId, callback) {
     const modalInput = document.getElementById('modal-input')
+    const btnSaveWorkout = document.getElementById('btn-save-workout')
+
+    console.log(modalInput.value)
 
     btnSaveWorkout.addEventListener('click', () => {
         const workoutName = modalInput.value;
-        workoutModal.close()
+        modalId.close()
         callback(workoutName)
         modalInput.value = "";
     })
+}
 
-    btnWorkoutOpenModal.addEventListener('click', () => {
-        workoutModal.showModal()
+
+export function setupModal() {
+    const workoutModal = document.getElementById('workout-modal')
+    const btnOpenModal = document.getElementById('btn-open-modal')
+    const btnCloseModal = document.getElementById("btn-close-modal")
+
+    btnOpenModal.addEventListener('click', () => {
+        workoutModal.showModal();
     })
 
-    btnWorkoutCloseModal.addEventListener('click', () => {
-        workoutModal.close()
+    btnCloseModal.addEventListener('click', () => {
+        workoutModal.close();
     })
+
+    return workoutModal;
 }
 
 export function setupDeleteButton(callback) {

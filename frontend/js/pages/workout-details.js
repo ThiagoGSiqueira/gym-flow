@@ -1,5 +1,5 @@
 import { requestDeleteWorkout, requestGetWorkoutById, requestUpdateWorkoutName } from "../api/workout-api.js";
-import { setupDeleteButton, renderWorkoutDetails, setupSaveWorkout } from "../ui/workout-ui.js";
+import { setupDeleteButton, renderWorkoutDetails, setupModal, saveWorkout } from "../ui/workout-ui.js";
 
 
 const queryString = window.location.search;
@@ -24,11 +24,10 @@ async function handleDeleteWorkout() {
 }
 
 async function handleUpdateWorkout(name) {
-    console.log(name)
-    const x = await requestUpdateWorkoutName(id, name)
-    console.log(x)
-    await renderWorkoutDetails(x.data)
+    const response = await requestUpdateWorkoutName(id, name)
+    await renderWorkoutDetails(response.data)
 }
 
+const modal = setupModal();
 setupDeleteButton(handleDeleteWorkout);
-setupSaveWorkout(handleUpdateWorkout);
+saveWorkout(modal, handleUpdateWorkout);

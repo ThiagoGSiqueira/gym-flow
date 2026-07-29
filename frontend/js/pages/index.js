@@ -1,5 +1,5 @@
 import { requestCreateWorkout, requestGetAllWorkouts } from "../api/workout-api.js";
-import { renderWorkouts, setupSaveWorkout } from "../ui/workout-ui.js";
+import { renderWorkouts, saveWorkout, setupModal } from "../ui/workout-ui.js";
 
 async function handleGetAllWorkouts() {
     const data = await requestGetAllWorkouts()
@@ -28,6 +28,7 @@ async function handleCreateWorkout(name) {
 
     await handleGetAllWorkouts()
 }
-
+    
+const modal = setupModal()
 handleGetAllWorkouts()
-setupSaveWorkout(handleCreateWorkout)
+saveWorkout(modal, handleCreateWorkout)

@@ -80,7 +80,6 @@ export async function requestDeleteWorkout(id) {
 }
 
 export async function requestUpdateWorkoutName(id, name) {
-    console.log(`${BASE_URL}/${id}`)
     try {
         const response = await fetch(`${BASE_URL}/${id}`, {
             method: 'PUT',
