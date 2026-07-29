@@ -22,8 +22,8 @@ export function renderWorkouts(data) {
 }
 
 export function renderWorkoutDetails(workout) {
+    console.log(workout.name)
     workoutTitle.innerHTML = `${workout.name}`
-    let count = 0;
 
     workout.exercises.forEach((exercise) => {
         listContainer.innerHTML += `
@@ -40,14 +40,14 @@ export function renderWorkoutDetails(workout) {
     })
 }
 
-export function setupModal(callback) {
+export function setupSaveWorkout(callback) {
     const workoutModal = document.getElementById('workout-modal')
     const btnWorkoutOpenModal = document.getElementById("btn-open-modal")
     const btnWorkoutCloseModal = document.getElementById("btn-close-modal")
-    const btnCreateWorkout = document.getElementById('btn-create-workout')
+    const btnSaveWorkout = document.getElementById('btn-save-workout')
     const modalInput = document.getElementById('modal-input')
 
-    btnCreateWorkout.addEventListener('click', () => {
+    btnSaveWorkout.addEventListener('click', () => {
         const workoutName = modalInput.value;
         workoutModal.close()
         callback(workoutName)
@@ -63,10 +63,10 @@ export function setupModal(callback) {
     })
 }
 
-export function setupDeleteButton(deleteFunction) {
+export function setupDeleteButton(callback) {
     const btnDeleteWorkout = document.getElementById('btn-delete-workout')
 
-    btnDeleteWorkout.addEventListener('click', () =>{
-        deleteFunction()
+    btnDeleteWorkout.addEventListener('click', () => {
+        callback()
     })
 }
