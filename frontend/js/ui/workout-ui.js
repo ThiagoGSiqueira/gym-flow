@@ -53,7 +53,6 @@ export async function saveWorkout(modalId, callback) {
     })
 }
 
-
 export function setupModal() {
     const workoutModal = document.getElementById('workout-modal')
     const btnOpenModal = document.getElementById('btn-open-modal')

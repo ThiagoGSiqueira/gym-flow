@@ -50,7 +50,7 @@
             <h3>Exercícios inclusos</h3>
             <ul class="list-container" id="list-container">
             </ul>
-            <button class="btn-primary" id="btn-open-modal">Adicionar exercício</button>
+            <button class="btn-primary" id="btn-exercise-modal">Adicionar exercício</button>
         </div>
     </main>
     <dialog id="workout-modal" class="modal">
@@ -60,6 +60,30 @@
         </div>
         <input type="text" placeholder="Digite o nome..." class="modal-input" id="modal-input">
         <button class="btn-primary" id="btn-save-workout">Salvar</button>
+    </dialog>
+
+    <dialog id="exercise-modal" class="modal">
+        <div class="modal-header">
+            <h2>Adicionar Exercício</h2>
+            <button class="btn-close" id="btn-close-exercise-modal">✕</button>
+        </div>
+
+        <input type="text" placeholder="Pesquisar exercício..." class="modal-input" id="search-exercise-input">
+
+        <ul class="exercise-select-list">
+            <li class="exercise-item-option">
+                <span>Supino Inclinado</span>
+                <span class="exercise-action">+ Adicionar</span>
+            </li>
+            <li class="exercise-item-option">
+                <span>Crucifixo</span>
+                <span class="exercise-action">+ Adicionar</span>
+            </li>
+            <li class="exercise-item-option">
+                <span>Desenvolvimento</span>
+                <span class="exercise-action">+ Adicionar</span>
+            </li>
+        </ul>
     </dialog>
     <script defer type="module" src="js/pages/workout-details.js"></script>
 </body>

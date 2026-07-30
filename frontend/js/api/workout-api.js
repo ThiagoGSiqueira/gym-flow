@@ -65,12 +65,13 @@ export async function requestCreateWorkout(name) {
 
 export async function requestDeleteWorkout(id) {
     try {
-        await fetch(`${BASE_URL}/${id}`, {
+        const response = await fetch(`${BASE_URL}/${id}`, {
             method: 'DELETE'
         })
 
         if (!response.ok) {
-            return { success: true, code: response.status, data: null };
+            console.log('caiu no if')
+            return { success: false, code: response.status, data: null };
         }
 
         return { success: true, code: STATUS_CODE.NO_CONTENT, data: null }

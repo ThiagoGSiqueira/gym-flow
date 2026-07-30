@@ -68,7 +68,7 @@ public class WorkoutController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<WorkoutResponseDTO> updateWorkout(@PathVariable Long id, @Valid @RequestBody WorkoutResponseDTO workoutUpdate) {
+    public ResponseEntity<WorkoutResponseDTO> updateWorkout(@PathVariable Long id, @Valid @RequestBody WorkoutRequestDTO workoutUpdate) {
         WorkoutResponseDTO workoutDTO = workoutMapper.toDto(workoutService.updateWorkout(id, workoutUpdate.name()));
 
         return ResponseEntity.ok(workoutDTO);
