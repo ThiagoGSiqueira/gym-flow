@@ -1,7 +1,6 @@
-const listContainer = document.getElementById("list-container")
-const workoutTitle = document.getElementById('workout-title')
-
 export function renderWorkouts(data) {
+
+    const listContainer = document.getElementById("list-container")
 
     listContainer.innerHTML = "";
 
@@ -22,6 +21,8 @@ export function renderWorkouts(data) {
 }
 
 export function renderWorkoutDetails(workout) {
+    const workoutTitle = document.getElementById('workout-title')
+
     workoutTitle.innerHTML = `${workout.name}`
 
     workout.exercises.forEach((exercise) => {
@@ -74,5 +75,34 @@ export function setupDeleteButton(callback) {
 
     btnDeleteWorkout.addEventListener('click', () => {
         callback()
+    })
+}
+
+export function setupAddExerciseModal() {
+    const exerciseModal = document.getElementById('exercise-modal')
+    const btnOpenExerciseModal = document.getElementById('btn-exercise-modal')
+    const btnCloseExerciseModal = document.getElementById('btn-close-exercise-modal')
+
+    btnOpenExerciseModal.addEventListener('click', () => {
+        exerciseModal.showModal()
+    })
+
+    btnCloseExerciseModal.addEventListener('click', () => {
+        exerciseModal.close()
+    })
+}
+
+export function renderExercises(exercises) {
+    const exerciseList = document.getElementById('exercise-select-list')
+
+    exerciseList.innerHTML = ""
+
+    exercises.data.forEach(exercise => {
+        exerciseList.innerHTML += `
+            <li class="exercise-item-option">
+                <span>${exercise.name}</span>
+                <span class="exercise-action">+ Adicionar</span>    
+            </li>
+            `
     })
 }

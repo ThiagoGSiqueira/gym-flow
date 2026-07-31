@@ -1,5 +1,6 @@
 import { requestDeleteWorkout, requestGetWorkoutById, requestUpdateWorkoutName } from "../api/workout-api.js";
-import { setupDeleteButton, renderWorkoutDetails, setupModal, saveWorkout } from "../ui/workout-ui.js";
+import { setupDeleteButton, renderWorkoutDetails, setupModal, saveWorkout, setupAddExerciseModal, renderExercises } from "../ui/workout-ui.js";
+import { requestCreateExercise, requestGetAllExercises } from "../api/exercise-api.js";
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
@@ -27,16 +28,24 @@ async function handleUpdateWorkout(name) {
     await renderWorkoutDetails(response.data)
 }
 
+async function handleGetAllExercises() {
+    const response = await requestGetAllExercises()
+    renderExercises(response)
+}
+
+const exercise = {
+    name: "Teste",
+    muscleGroup: "CHEST"
+}
+
+const a = await requestCreateExercise(exercise)
+console.log(a)
+
+
+console.log(a.code)
+
 const modal = setupModal();
 setupDeleteButton(handleDeleteWorkout);
 saveWorkout(modal, handleUpdateWorkout);
-
-
-//Criando o modal / funcionalidade de adicionar exercícios
-const openModal = document.getElementById('btn-exercise-modal')
-const exerciseModal = document.getElementById('exercise-modal')
-
-openModal.addEventListener('click', () => {
-    console.log('caiu')
-    exerciseModal.showModal();
-})
+setupAddExerciseModal()
+handleGetAllExercises( )
