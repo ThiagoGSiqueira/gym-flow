@@ -11,7 +11,7 @@
     <title>Gym Flow - Workout Details</title>
 </head>
 
-<body id="workou-details">
+<body id="workout-details">
     <header>
         <nav class="navigation-bar">
             <div class="container-nav-title">
@@ -31,7 +31,7 @@
             <div class="card-header">
                 <h2 id="workout-title"></h2>
                 <div class="actions">
-                    <button class="btn-icon" id="btn-open-modal"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
+                    <button class="btn-icon" id="workout-edit-btn"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
                             viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
                             <path
                                 d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" />
@@ -50,22 +50,23 @@
             <h3>Exercícios inclusos</h3>
             <ul class="list-container" id="list-container">
             </ul>
-            <button class="btn-primary" id="btn-exercise-modal">Adicionar exercício</button>
+            <button class="btn-primary" id="exercise-modal-add-btn">Adicionar exercício</button>
         </div>
     </main>
+
     <dialog id="workout-modal" class="modal">
         <div class="modal-header">
             <h2>Atualizar nome</h2>
-            <button class="btn-close" id="btn-close-modal">✕</button>
+            <button class="btn-close" id="workout-modal-close-btn">✕</button>
         </div>
-        <input type="text" placeholder="Digite o nome..." class="modal-input" id="modal-input">
-        <button class="btn-primary" id="btn-save-workout">Salvar</button>
+        <input type="text" placeholder="Digite o nome..." class="modal-input" id="workout-modal-input">
+        <button class="btn-primary" id="workout-save-btn">Salvar</button>
     </dialog>
 
     <dialog id="exercise-modal" class="modal">
         <div class="modal-header">
             <h2>Adicionar Exercício</h2>
-            <button class="btn-close" id="btn-close-exercise-modal">✕</button>
+            <button class="btn-close" id="exercise-modal-close-btn">✕</button>
         </div>
 
         <input type="text" placeholder="Pesquisar exercício..." class="modal-input" id="search-exercise-input">
@@ -73,6 +74,7 @@
         <ul class="exercise-select-list" id="exercise-select-list">
         </ul>
     </dialog>
+
     <script defer type="module" src="js/pages/workout-details.js"></script>
 </body>
 

@@ -1,34 +1,37 @@
 import { requestCreateWorkout, requestGetAllWorkouts } from "../api/workout-api.js";
-import { renderWorkouts, saveWorkout, setupModal } from "../ui/workout-ui.js";
+import { setupModal } from "../component/modal.js";
+import { renderWorkouts, saveWorkout } from "../ui/workout-ui.js";
 
-async function handleGetAllWorkouts() {
-    const data = await requestGetAllWorkouts()
+async function fetchAndRenderWorkouts() {
+    const response = await requestGetAllWorkouts();
 
-    if (data.success === false) {
-        alert("Não foi possível conectar-se ao servidor. Por favor, tente novamente mais tarde.")
-        return
+    if (response.success === false) {
+        alert("Não foi possível conectar-se ao servidor. Por favor, tente novamente mais tarde.");
+        return;
     }
-    await renderWorkouts(data.data)
+    await renderWorkouts(response.data);
 }
 
-async function handleCreateWorkout(name) {
-    const data = await requestCreateWorkout(name)
+async function createNewWorkout(workoutName) {
+    const response = await requestCreateWorkout(workoutName);
 
-    if (data.success === false) {
-        if (data.code === 409) {
-            alert(`A ficha de nome "${name}" já existe.`)
-            return
-        } else if (data.code === 400) {
-            alert("Erro no envio. Por favor, verifique os campos.")
-            return
+    if (response.success === false) {
+        if (response.code === 409) {
+            alert(`A ficha de nome "${workoutName}" já existe.`);
+            return;
+        } else if (response.code === 400) {
+            alert("Erro no envio. Por favor, verifique os campos.");
+            return;
         }
-        alert(`Erro: ${data.code}. Não foi possível conectar-se ao servidor. Por favor, tente novamente mais tarde.`)
-        return
-    }
+        alert(`Erro: ${response.code}. Não foi possível conectar-se ao servidor. Por favor, tente novamente mais tarde.`);
+        return;
+    } 
 
-    await handleGetAllWorkouts()
+    await fetchAndRenderWorkouts();
 }
-    
-const modal = setupModal()
-handleGetAllWorkouts()
-saveWorkout(modal, handleCreateWorkout)
+
+const workoutModalElement = setupModal('workout-modal', 'btn-open-workout-modal', 'modal-close-workout-btn');
+const exerciseModalElement = setupModal('exercise-modal', 'btn-open-exercise-modal', 'modal-close-exercise-btn');
+
+fetchAndRenderWorkouts();
+saveWorkout(workoutModalElement, createNewWorkout);

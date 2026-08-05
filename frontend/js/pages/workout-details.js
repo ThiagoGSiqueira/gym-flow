@@ -1,51 +1,39 @@
 import { requestDeleteWorkout, requestGetWorkoutById, requestUpdateWorkoutName } from "../api/workout-api.js";
-import { setupDeleteButton, renderWorkoutDetails, setupModal, saveWorkout, setupAddExerciseModal, renderExercises } from "../ui/workout-ui.js";
-import { requestCreateExercise, requestGetAllExercises } from "../api/exercise-api.js";
+import { setupDeleteButton, renderWorkoutDetails, saveWorkout, setupAddExerciseModal, renderExercises } from "../ui/workout-ui.js";
+import { setupModal } from "../component/modal.js";
+import { requestGetAllExercises } from "../api/exercise-api.js";
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-const id = urlParams.get('id');
-const response = await requestGetWorkoutById(id);
-const btnDeleteWorkout = document.getElementById('btn-delete-workout')
+const workoutId = urlParams.get('id');
 
-renderWorkoutDetails(response.data)
+const workoutResponse = await requestGetWorkoutById(workoutId);
+renderWorkoutDetails(workoutResponse.data);
 
 async function handleDeleteWorkout() {
-    const response = await requestDeleteWorkout(id);
-    console.log(response)
-    console.log(response.success)
+    const deleteResponse = await requestDeleteWorkout(workoutId);
 
-    if (response.success) {
-        window.location.href = "index.html"
-    }
-    else if (response.success === 0) {
-        alert("Erro de rede.")  
+    if (deleteResponse.success) {
+        window.location.href = "index.html";
+    } else if (deleteResponse.success === 0) {
+        alert("Erro de rede.");
     }
 }
 
-async function handleUpdateWorkout(name) {
-    const response = await requestUpdateWorkoutName(id, name)
-    await renderWorkoutDetails(response.data)
+async function handleUpdateWorkout(workoutName) {
+    const updateResponse = await requestUpdateWorkoutName(workoutId, workoutName);
+    renderWorkoutDetails(updateResponse.data);
 }
 
 async function handleGetAllExercises() {
-    const response = await requestGetAllExercises()
-    renderExercises(response)
+    const exercisesResponse = await requestGetAllExercises();
+    renderExercises(exercisesResponse);
 }
 
-const exercise = {
-    name: "Teste",
-    muscleGroup: "CHEST"
-}
+const exerciseModalElement = setupModal('exercise-modal', 'exercise-modal-add-btn', 'exercise-modal-close-btn');
+const workoutModalElement = setupModal('workout-modal', 'workout-edit-btn', 'workout-modal-close-btn');
 
-const a = await requestCreateExercise(exercise)
-console.log(a)
-
-
-console.log(a.code)
-
-const modal = setupModal();
 setupDeleteButton(handleDeleteWorkout);
-saveWorkout(modal, handleUpdateWorkout);
-setupAddExerciseModal()
-handleGetAllExercises( )
+saveWorkout(workoutModalElement, handleUpdateWorkout);
+setupAddExerciseModal();
+handleGetAllExercises();
