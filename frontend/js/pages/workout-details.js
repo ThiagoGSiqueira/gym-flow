@@ -1,5 +1,5 @@
 import { requestDeleteWorkout, requestGetWorkoutById, requestUpdateWorkoutName } from "../api/workout-api.js";
-import { setupDeleteButton, renderWorkoutDetails, saveWorkout, setupAddExerciseModal, renderExercises } from "../ui/workout-ui.js";
+import { setupDeleteButton, renderWorkoutDetails, bindSaveWorkout, setupAddExerciseModal, renderWorkoutExercises } from "../ui/workout-ui.js";
 import { setupModal } from "../component/modal.js";
 import { requestGetAllExercises } from "../api/exercise-api.js";
 
@@ -27,13 +27,13 @@ async function handleUpdateWorkout(workoutName) {
 
 async function handleGetAllExercises() {
     const exercisesResponse = await requestGetAllExercises();
-    renderExercises(exercisesResponse);
+    renderWorkoutExercises(exercisesResponse);
 }
 
 const exerciseModalElement = setupModal('exercise-modal', 'exercise-modal-add-btn', 'exercise-modal-close-btn');
 const workoutModalElement = setupModal('workout-modal', 'workout-edit-btn', 'workout-modal-close-btn');
 
 setupDeleteButton(handleDeleteWorkout);
-saveWorkout(workoutModalElement, handleUpdateWorkout);
+bindSaveWorkout(workoutModalElement, handleUpdateWorkout);
 setupAddExerciseModal();
 handleGetAllExercises();

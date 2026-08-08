@@ -11,3 +11,28 @@ body {
     background-color: var(--item-bg-hover);
     color: var(--accent);
 }
+
+.exercise-select {
+    background-color: var(--input-bg, #262626);
+    color: var(--text, #e3e3e3);
+    border: 1px solid var(--border, #333333);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    width: 100%;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+.exercise-select:hover {
+    border-color: var(--accent, #3970e4);
+}
+
+.exercise-select:focus {
+    border-color: var(--accent, #3970e4);
+    box-shadow: 0 0 0 2px rgba(57, 112, 228, 0.2);
+}

@@ -28,29 +28,18 @@
     <main>
         <div class="card">
             <h2>Fichas Disponíveis</h2>
-            <ul class="list-container" id="list-container"></ul>
+            <ul class="list-container" id="workout-list"></ul>
             <button class="btn-primary" id="btn-open-workout-modal">Criar nova ficha</button>
         </div>
 
         <div class="card">
             <h2>Exercícios disponíveis</h2>
-            <ul class="list-container">
-                <a href="#" class="list-link">
-                    <li class="list-item">
-                        <p>Supino Reto</p>
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                            fill="#e3e3e3">
-                            <path
-                                d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-17 0l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" />
-                        </svg>
-                    </li>
-                </a>
-            </ul>
+            <ul class="list-container" id="exercise-list"></ul>
             <button class="btn-primary" id="btn-open-exercise-modal">Criar novo exercício</button>
         </div>
     </main>
 
-    <!-- Modal de fichas (Workout)-->
+    <!-- Modal para criar nova ficha (Workout)-->
     <dialog id="workout-modal" class="modal">
         <div class="modal-header">
             <h2>Nova Ficha</h2>
@@ -60,17 +49,25 @@
         <button class="btn-primary" id="workout-save-btn">Criar</button>
     </dialog>
 
-    <!-- Modal de exercícios (Exercise)-->
+    <!-- Modal para criar novo exercício (Exercise)-->
     <dialog id="exercise-modal" class="modal">
         <div class="modal-header">
             <h2>Novo Exercício</h2>
             <button class="btn-close" id="modal-close-exercise-btn">✕</button>
         </div>
         <input type="text" placeholder="Digite o nome..." class="modal-input" id="exercise-modal-input">
+        <label for="muscle-group">Selecione o grupo muscular:</label>
+        <select name="muscle-group" id="exercise-modal-select" class="exercise-select">
+            <option value="CHEST">Peito</option>
+            <option value="BACK">Costas</option>
+            <option value="SHOULDERS">Ombro</option>
+            <option value="ARMS">Braço</option>
+            <option value="CORE">Core</option>
+            <option value="LEGS">Pernas</option>
+        </select>
         <button class="btn-primary" id="exercise-save-btn">Criar</button>
     </dialog>
 
     <script defer type="module" src="js/pages/index.js"></script>
 </body>
-
 </html>
