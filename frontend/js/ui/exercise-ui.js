@@ -9,7 +9,6 @@ export async function bindSaveExercise(modalElement, callback) {
             muscleGroup: exerciseMuscleGroup.value
         }
         modalElement.close();
-        console.log(exercise)
         callback(exercise);
         exerciseName.value = "";
         exerciseMuscleGroup.selectedIndex = 0;
