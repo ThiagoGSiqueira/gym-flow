@@ -1,36 +1,9 @@
-/* --- Estilo específico do card --- */
-
-.card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.5rem;
-}
-
-.actions {
-    display: flex;
-    gap: 0.8rem;
-}
-
-.btn-icon {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.2rem;
-    transition: transform 0.2s;
-}
-
-.btn-icon:hover {
-    transform: scale(1.2);
-}
-
+/* --- Estilos exclusivos da tela de Detalhes do Treino --- */
 .card h3 {
     font-size: 0.9rem;
     color: #888;
     font-weight: 400;
 }
-
-/* --- Estilo específico da lista --- */
 
 .list-item button {
     background-color: transparent;
@@ -38,28 +11,15 @@
     transition: 0.5s;
 }
 
-
 .list-item button:hover {
     transform: scale(1.2);
     transition: 0.5s;
 }
 
-/* --- Estilos do Modal de Exercícios --- */
 #exercise-modal {
-    background: var(--bg-card);
-    color: var(--text);
     border: 1px solid #333;
     border-radius: 8px;
     padding: 1.5rem;
-    width: 100%;
-    max-width: 400px;
-}
-
-#exercise-modal .modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
 }
 
 #exercise-modal .modal-header h2 {
@@ -67,11 +27,7 @@
 }
 
 #exercise-modal .modal-input {
-    width: 100%;
     padding: 0.6rem;
-    background: var(--bg-body);
-    border: 1px solid #444;
-    color: var(--text);
     border-radius: 4px;
     margin-bottom: 1rem;
 }
