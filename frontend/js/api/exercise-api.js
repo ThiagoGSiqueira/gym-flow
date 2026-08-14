@@ -15,7 +15,7 @@ export async function requestGetAllExercises() {
         const data = await response.json()
 
         if (!response.ok) {
-            return { success: false, code: response.statusm, data: null }
+            return { success: false, code: response.status, data: null }
         }
 
         return { success: true, code: STATUS_CODE.SUCCESS, data: data }
@@ -40,6 +40,21 @@ export async function requestCreateExercise(exercise) {
 
         return { success: true, code: STATUS_CODE.CREATED, data: null }
     } catch (e) {
-        return { success: true, code: STATUS_CODE.NETWORK_ERROR, data: null }
+        return { success: false, code: STATUS_CODE.NETWORK_ERROR, data: null }
+    }
+}
+
+export async function requestGetExerciseById(exerciseId) {
+    try {
+        const response = await fetch(`${BASE_URL}/${exerciseId}`)
+        const data = await response.json()
+
+        if (!response.ok) {
+            return { success: false, code: response.status, data: null }
+        }
+
+        return { success: true, code: STATUS_CODE.SUCCESS, data: data }
+    } catch (e) {
+        return { success: false, code: STATUS_CODE.NETWORK_ERROR, data: null }
     }
 }

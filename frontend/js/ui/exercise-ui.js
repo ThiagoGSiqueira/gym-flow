@@ -14,3 +14,19 @@ export async function bindSaveExercise(modalElement, callback) {
         exerciseMuscleGroup.selectedIndex = 0;
     });
 }
+
+export async function renderExerciseDetails(exercise) {
+    const exerciseTitle = document.getElementById('exercise-title')
+    const exerciseMuscleGroup = document.getElementById('exercise-muscle-group')
+
+
+    //Descobrir um jeito de mapear isso melhor
+    if(exercise.muscleGroup === "CHEST") {
+        exercise.muscleGroup = "Peito"
+    } else if (exercise.muscleGroup === "LEGS") {
+        exercise.muscleGroup = "Perna"
+    }
+
+    exerciseTitle.innerHTML = `${exercise.name}`
+    exerciseMuscleGroup.innerHTML = `${exercise.muscleGroup}`
+}
