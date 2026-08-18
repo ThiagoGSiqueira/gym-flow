@@ -58,3 +58,19 @@ export async function requestGetExerciseById(exerciseId) {
         return { success: false, code: STATUS_CODE.NETWORK_ERROR, data: null }
     }
 }
+
+export async function requestDeleteExercise(exerciseId) {
+    try {
+        const response = await fetch(`${BASE_URL}/${exerciseId}`, {
+            method: 'DELETE'
+        })
+
+        if (!response.ok) {
+            return { success: false, code: response.status, data: null }
+        }
+
+        return { success: true, code: STATUS_CODE.NO_CONTENT, data: null }
+    } catch (e) {
+        return { success: false, code: STATUS_CODE.NETWORK_ERROR, data: null }
+    }
+}
