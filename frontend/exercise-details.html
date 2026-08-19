@@ -53,11 +53,12 @@
     <dialog class="modal" id="exercise-modal">
         <div class="modal-header">
             <h2>Atualizar nome</h2>
-            <button class="btn-close" id="workout-modal-close-btn">✕</button>
+            <button class="btn-close" id="exercise-modal-close-btn">✕</button>
         </div>
-        <input type="text" placeholder="Digite o nome..." class="modal-input">
+        <input type="text" placeholder="Digite o nome..." class="modal-input" id="exercise-modal-input">
         <label for="muscle-group">Selecione o grupo muscular:</label>
         <select name="muscle-group" id="exercise-modal-select" class="exercise-select">
+            <option>Selecionar...</option>
             <option value="CHEST">Peito</option>
             <option value="BACK">Costas</option>
             <option value="SHOULDERS">Ombro</option>
@@ -65,7 +66,7 @@
             <option value="CORE">Core</option>
             <option value="LEGS">Pernas</option>
         </select>
-        <button class="btn-primary">Salvar</button>
+        <button class="btn-primary" id="exercise-save-btn">Salvar</button>
     </dialog>
     <script defer type="module" src="js/pages/exercise-details.js"></script>
 </body>

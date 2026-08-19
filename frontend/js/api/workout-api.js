@@ -72,8 +72,7 @@ export async function requestDeleteWorkout(workoutId) {
             return { success: false, code: response.status, data: null };
         }
 
-        return { success: true, code: STATUS_CODE.NO_CONTENT, data: null };
-    } catch (error) {
+        return { success: true, code: STATUS_CODE.NO_CONTENT, data: null };    } catch (error) {
         return { success: false, code: STATUS_CODE.NETWORK_ERROR, data: null };
     }
 }

@@ -5,13 +5,13 @@ import { setupModal } from "../component/modal.js";
 
 export async function initWorkoutDetailsController(workoutId) {
     const exerciseModalElement = setupModal('exercise-modal', 'exercise-modal-add-btn', 'exercise-modal-close-btn');
-    const workoutModalElement = setupModal('workout-modal', 'workout-edit-btn', 'workout-modal-close-btn');
+    const editWorkoutModalElement = setupModal('workout-modal', 'workout-edit-btn', 'workout-modal-close-btn');
 
     const workoutResponse = await requestGetWorkoutById(workoutId);
     renderWorkoutDetails(workoutResponse.data);
 
     setupDeleteButton(() => {handleDeleteWorkout(workoutId)});
-    bindSaveWorkout(workoutModalElement, (workoutName) => {handleUpdateWorkout(workoutId, workoutName)});
+    bindSaveWorkout(editWorkoutModalElement, (workoutName) => {handleUpdateWorkout(workoutId, workoutName)});
     setupAddExerciseModal();
     handleGetAllExercises();
 }

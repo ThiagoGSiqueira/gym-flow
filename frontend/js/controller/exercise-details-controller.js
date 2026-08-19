@@ -1,19 +1,24 @@
-import { requestDeleteExercise, requestGetExerciseById } from "../api/exercise-api.js"
-import { renderExerciseDetails, setupDeleteExerciseButton } from "../ui/exercise-ui.js"
+import { requestUpdateExercise, requestDeleteExercise, requestGetExerciseById } from "../api/exercise-api.js"
+import { setupModal } from "../component/modal.js";
+import { bindSaveExercise, renderExerciseDetails, setupDeleteExerciseButton } from "../ui/exercise-ui.js"
+
 
 
 export async function initExerciseDetailsController(exerciseId) {
+    const editWorkoutModalElement = setupModal('exercise-modal', 'exercise-edit-btn', 'exercise-modal-close-btn');
     const exercise = await requestGetExerciseById(exerciseId)
     renderExerciseDetails(exercise.data)
-    setupDeleteExerciseButton(() => {handleDeleteExercise(exerciseId)})
+    bindSaveExercise(editWorkoutModalElement, (exercise) => { handleUpdateExercise(exerciseId, exercise) })
+    setupDeleteExerciseButton(() => { handleDeleteExercise(exerciseId) })
 }
 
 async function handleDeleteExercise(exerciseId) {
     const deleteResponse = await requestDeleteExercise(exerciseId)
+    window.location.href = "index.html";
+}
 
-    if (deleteResponse.success) {
-        window.location.href = "index.html";
-    } else if (deleteResponse.success === 0) {
-        alert("Erro de rede.");
-    }
+async function handleUpdateExercise(exerciseId, exercise) {
+    const updatedExercise = await requestUpdateExercise(exerciseId, exercise)
+
+    await renderExerciseDetails(updatedExercise.data)
 }

@@ -59,6 +59,26 @@ export async function requestGetExerciseById(exerciseId) {
     }
 }
 
+export async function requestUpdateExercise(exerciseId, exercise) {
+    try {
+        const response = await fetch(`${BASE_URL}/${exerciseId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(exercise)
+        })
+
+        if (!response.ok) {
+            return { success: false, status: response.status, data: null }
+        }
+
+        return { success: true, status: STATUS_CODE.SUCCESS, data: exercise }
+    } catch (e) {
+        return { success: false, code: STATUS_CODE.NETWORK_ERROR, data: null }
+    }
+}
+
 export async function requestDeleteExercise(exerciseId) {
     try {
         const response = await fetch(`${BASE_URL}/${exerciseId}`, {
