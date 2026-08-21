@@ -19,28 +19,23 @@ export async function renderExerciseDetails(exercise) {
     const exerciseTitle = document.getElementById('exercise-title')
     const exerciseMuscleGroup = document.getElementById('exercise-muscle-group')
 
-    //Descobrir um jeito de mapear isso melhor
-    if(exercise.muscleGroup === "CHEST") {
-        exercise.muscleGroup = "Peito"
-    } else if (exercise.muscleGroup === "BACK") {
-        exercise.muscleGroup = "Costas"
-    } else if (exercise.muscleGroup === "SHOULDERS") {
-        exercise.muscleGroup = "Ombro"
-    } else if(exercise.muscleGroup === "ARMS") {
-        exercise.muscleGroup = "Braço"
-    } else if (exercise.muscleGroup === "CORE") {
-        exercise.muscleGroup = "Core"
-    } else if (exercise.muscleGroup === "LEGS") {
-        exercise.muscleGroup = "Perna"
-    }
+    //Mapeia para português sem alterar o objeto original (exercise), apenas pro visual (HTML)
+    const muscleTranslations = {
+        CHEST: "Peito",
+        BACK: "Costas",
+        SHOULDERS: "Ombro",
+        ARMS: "Braço",
+        CORE: "Core",
+        LEGS: "Perna"
+    };
 
     exerciseTitle.innerHTML = `${exercise.name}`
-    exerciseMuscleGroup.innerHTML = `${exercise.muscleGroup}`
+    exerciseMuscleGroup.innerHTML = muscleTranslations[exercise.muscleGroup] || exercise.muscleGroup
 }
 
 export async function setupDeleteExerciseButton(callback) {
     const deleteButton = document.getElementById('btn-delete-exercise')
-    
+
     deleteButton.addEventListener('click', () => {
         callback()
     })
